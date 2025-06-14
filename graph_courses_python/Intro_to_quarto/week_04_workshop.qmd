@@ -1,0 +1,55 @@
+---
+title: "India TB Pathways Analysis"
+author: "PELUMI OGUNLUSI"
+date: "2025-05-07"
+format: 
+    html:
+        embed-resources: true
+execute:
+    echo: false
+---
+
+Importing the required libraries
+
+```{python}
+import pandas as pd
+import plotly.express as px
+from itables import show
+```
+
+# Description of the  India TB Pathways dataset
+
+*The India TB Pathways dataset is based on a study conducted in Vellore district, Tamil Nadu, India. It xamines the pre-diagnostic costs and health-seeking behavior of 880 new adult pulmonary tuberculosis atients registered at Primary Health Centres (PHCs).*
+
+```{python}
+India_TB = pd.read_csv('india_tb_pathways_and_costs.csv')
+show(India_TB)
+```
+
+![Map of Tamil Nadu. Vellore district is in the north-east.](Intro_to_quarto\images\tndistrict_1.png)
+
+# Bivariate plot of the relationship between age and length of treatment initiation delays in days  
+
+```{python}
+px.histogram(India_TB, x='Age', y='Treatment initiation delay (in days)')
+```
+As observed in the plot above, , extremely young and extremely old individuals attending various PHC in Tamil Nadu, India faced shorter delays compared to adults within the age of 44-64 which is quite expected as these individuals are generally more healthier relative to the children and the aged.
+
+# Higlighting Key numbers with inline 
+
+```{python}
+max_delay = India_TB['Treatment initiation delay (in days)'].max()
+corresponding_max_age = India_TB.loc[India_TB['Treatment initiation delay (in days)'] == max_delay, 'Age'].iloc[0]
+print(f'The maximum treatment initiation delay was {max_delay} days, and the corresponding age was {corresponding_max_age} years.')
+```
+
+```{python}
+min_delay = India_TB['Treatment initiation delay (in days)'].min()
+corresponding_min_age = India_TB.loc[India_TB['Treatment initiation delay (in days)'] == min_delay, 'Age'].iloc[0]
+print(f'The minimum treatment initiation delay was {min_delay} days, and the corresponding age was {corresponding_min_age} years.')
+```
+
+
+
+
+

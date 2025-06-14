@@ -1,0 +1,73 @@
+---
+title: "My First Quarto Doc"
+author: "Pelumi Ogunlusi"
+format: 
+    html:
+        embed-resources: true
+execute: 
+  echo: false
+---
+# Level 1 Header
+## Level 2 Header
+### Level 3 Header
+
+This is text with *italics* and **bold**.
+
+You can define bulleted lists:
+
+- First element
+- Second element
+
+You can also add link 
+[Example Link](https://thegraphcourses.org)
+
+You can also embed images 
+![Image descritption](C:\Users\pelumi Ogunlusi\Desktop\graph_courses_python\Intro_to_quarto\images\tgc_unity-624x461.png)
+
+# Section 1
+
+Hello
+
+# Section 2
+
+World
+
+```{python}
+2+2
+```
+
+
+```{python}
+3*4
+for num in [1,2,3]:
+    print(num)
+4*4
+```
+
+# Displaying Tables
+
+```{python}
+import plotly.express as px
+from itables import show
+tips = px.data.tips()
+show(tips)
+```
+
+# Displaying plots
+
+```{python}
+px.violin (tips,x='tip',y='sex')
+```
+
+# Displaying Static plots
+
+```{python}
+tips_sex = px.violin(tips, x="tip", y="sex", color="sex")
+tips_sex.write_image("tips_sex_plot.png")
+```
+
+
+```{python}
+2+2
+```
+![Violin plot of tips by sex](C:\Users\pelumi Ogunlusi\Desktop\graph_courses_python\Intro_to_quarto\outputs\tips_sex_plot.png)
